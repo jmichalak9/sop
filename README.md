@@ -20,12 +20,18 @@ Można je traktować jako checklistę przed wysłaniem rozwiązania.
 if (closedir(dir))
     ERR("closedir")
 ```
+- Niektóre funkcje informują o błędzie, ustawiając zmienną `errno`.
+- Kończ `fprintf` i `printf` znakiem nowej linii `\n`.
 - Inicjalizuj zmienne. Nie jesteśmy w latach 70. i to dużo nie kosztuje.
 - Nie używaj tzw. magic numbers. Zamiast pisać `malloc(4)` pisz `malloc(sizeof(int))`
+- Zwalniaj zasoby, jak katalogi, pliki, deskryptory.
 
 ## Korzystanie z IDE, mana itp.
 ### Visual Studio Code
 - wciśnięcie <C-/> powoduje (za|od)komentowanie zaznaczonych linii.
+
+### bash/terminal
+TODO: c-z, c-d itp.
 
 ### manpage
 - `d` i `u` szybkie poruszanie w dół i w górę
@@ -34,6 +40,7 @@ if (closedir(dir))
 - Wywołanie z parametrem `-k arg` przeszukuje manpage dotyczące `arg`. Super przydatne, gdy nie wiemy nawet gdzie szukać.
 - Flaga `-a`, gdy nie wiemy, która sekcja.
 - Korzystaj ze stron POSIX-owych: `man 3p printf` zamiast `man 3 printf`
+- Warto zwrócić uwagę na sekcje `EXAMPLES` i `SEE ALSO`
 - Więcej sztuczek, gdy wciśniemy `h` i oczywiście w komendzie `man man` :)
 
 ### debugger
