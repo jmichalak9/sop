@@ -1,4 +1,53 @@
-# os
-Programs written while learning operating systems concepts
-## topics
-- process api
+# sop
+W tym repozytorium znajdują się materiały do korzystania na labach z sopów.
+W plikach zad\*.c są rozwiązania do przykładowych zadań na końcu tutoriala.
+To repo nie zastępuje tutoriala, materiałów z dysku i dokumentacji, jest to takie TLDR, żeby nie szukać wszystkiego w kilku miejscach.
+Zachęcam do tworzenia issues i pull requestów.
+
+
+## Ogólne porady programistyczne
+Można je traktować jako checklistę przed wysłaniem rozwiązania.
+
+- Pisz `if (1 == x)` zamiast `if (x == 1)`
+- Do wypisywania błędów używaj makro
+```c
+#define ERR(source) (perror(source),\
+            fprintf(stderr,"%s:%d\n",__FILE__,__LINE__),\
+            exit(EXIT_FAILURE))
+```
+- Zawsze sprawdzaj zwracane wartości funkcji systemowych, np.
+```c
+if (closedir(dir))
+    ERR("closedir")
+```
+- Inicjalizuj zmienne. Nie jesteśmy w latach 70. i to dużo nie kosztuje.
+- Nie używaj tzw. magic numbers. Zamiast pisać `malloc(4)` pisz `malloc(sizeof(int))`
+
+## Korzystanie z IDE, mana itp.
+### Visual Studio Code
+- wciśnięcie <C-/> powoduje (za|od)komentowanie zaznaczonych linii.
+
+### manpage
+- `d` i `u` szybkie poruszanie w dół i w górę
+- `/str` wyszukiwanie wzorca `str` w tekście
+- `n` i `N` przejście do następnego i poprzedniego wyniku wyszukiwania
+- Wywołanie z parametrem `-k arg` przeszukuje manpage dotyczące `arg`. Super przydatne, gdy nie wiemy nawet gdzie szukać.
+- Flaga `-a`, gdy nie wiemy, która sekcja.
+- Korzystaj ze stron POSIX-owych: `man 3p printf` zamiast `man 3 printf`
+- Więcej sztuczek, gdy wciśniemy `h` i oczywiście w komendzie `man man` :)
+
+### debugger
+
+### wgrywanie rozwiązań
+
+## Strumienie I/O
+
+## Katalogi
+
+## Zmienne środowiskowe
+
+## Parametry wywołania programu
+
+## Inne źródła
+- [glibc](https://www.gnu.org/software/libc/manual/)
+- [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/)
