@@ -59,3 +59,4 @@ Polecam [gdbgui](https://www.gdbgui.com/).
 ## Inne źródła
 - [glibc](https://www.gnu.org/software/libc/manual/)
 - [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/)
+- Michael Kerrisk - "Linux Programming Interface" łatwo dostępna książka, w której wszystko jest szczegółowo opisane, są tam przykładowe programy i ich uruchomienia
