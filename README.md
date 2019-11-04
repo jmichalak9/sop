@@ -1,7 +1,7 @@
 # sop
-W tym repozytorium znajdują się materiały do korzystania na labach z sopów.
+W tym repozytorium znajdują się m.in. porady na laby z sopów.
 W plikach zad\*.c są rozwiązania do przykładowych zadań na końcu tutoriala.
-To repo nie zastępuje tutoriala, materiałów z dysku i dokumentacji, jest to takie TLDR, żeby nie szukać wszystkiego w kilku miejscach.
+To repo nie zastępuje tutoriala, materiałów z dysku i dokumentacji.
 Zachęcam do tworzenia issues i pull requestów.
 
 
@@ -28,7 +28,7 @@ if (closedir(dir))
 
 ## Korzystanie z IDE, mana itp.
 ### Visual Studio Code
-- wciśnięcie <C-/> powoduje (za|od)komentowanie zaznaczonych linii.
+- wciśnięcie `<C-/>` powoduje (za|od)komentowanie zaznaczonych linii.
 
 ### bash/terminal
 TODO: c-z, c-d itp.
@@ -44,6 +44,7 @@ TODO: c-z, c-d itp.
 - Więcej sztuczek, gdy wciśniemy `h` i oczywiście w komendzie `man man` :)
 
 ### debugger
+Polecam [gdbgui](https://www.gdbgui.com/).
 
 ### wgrywanie rozwiązań
 
