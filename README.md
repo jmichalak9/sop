@@ -46,6 +46,8 @@ TODO: c-z, c-d itp.
 ### debugger
 Polecam [gdbgui](https://www.gdbgui.com/).
 
+### strace
+Pozwala śledzić wywołania funkcji systemowych i sygnały. Więcej w `man strace`.
 ### wgrywanie rozwiązań
 
 ## Strumienie I/O
