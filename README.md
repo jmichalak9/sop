@@ -30,6 +30,9 @@ if (closedir(dir))
 ### Visual Studio Code
 - wciśnięcie `<C-/>` powoduje (za|od)komentowanie zaznaczonych linii.
 
+### vim
+ale + coc + ccls
+
 ### bash/terminal
 TODO: c-z, c-d itp.
 
@@ -48,6 +51,7 @@ Polecam [gdbgui](https://www.gdbgui.com/).
 
 ### strace
 Pozwala śledzić wywołania funkcji systemowych i sygnały. Więcej w `man strace`.
+
 ### wgrywanie rozwiązań
 
 ## Strumienie I/O
