@@ -4,6 +4,10 @@ W plikach zad\*.c są rozwiązania do przykładowych zadań na końcu tutoriala.
 To repo nie zastępuje tutoriala, materiałów z dysku i dokumentacji.
 Zachęcam do tworzenia issues i pull requestów.
 
+Pliki:
+- `zad*.c` - Rozwiązania zadań z tutoriala.
+- `lab*.c` - Rozwiązania zadań z laboratoriów.
+- `szablon*.c` - Szablony
 
 ## Ogólne porady programistyczne
 Można je traktować jako checklistę przed wysłaniem rozwiązania.
