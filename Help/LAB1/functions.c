@@ -126,20 +126,33 @@ mode_t perms = strtol(param/*optarg for examp*/, (char **)NULL, 8);//usemkowy
 
 
 //FOPEN - tworzenie pliku jako wyjscia
-FILE* make_file(char *name)
-{
-	FILE* new_file;
-	//umask(~perms&0777); //jakas maska perms - ósemkowo
-	if((new_file=fopen(name,"w+"))==NULL)ERR("fopen");
-	return new_file;
-	
-}
 //#main
+FILE* new_file;
+//umask(~perms&0777); //jakas maska perms - ósemkowo
+if((new_file=fopen(name,"w+"))==NULL)ERR("fopen");
 FILE* output = stdout;
-if(true/*jakies tam warunek dac*/) output = make_file("file_name");
+if(true/*jakis tam warunek kiedy chcemy plik*/) output = new_file;
 for(int i=0;i<100;i++)
 {
     // jakies dzialanie np fprintf(output,"%d\n",i);
     //if(fseek(output,polozenie_kursora,SEEK_SET)) ERR("fseek");
 }
 if(fclose(output))ERR("fclose");
+//PRZYDATNE OPERACJE
+int* tab = mallock(sizeof(int) * rozmiar);
+free(tab);
+char s1[25] = "Ala ma kota";
+char s2[25] = "Ala ma psa";
+printf("s1: %s\n",s1);
+printf("s2: %s\n",s2);
+printf("Długości s1: %ld, s2: %ld\n",strlen(s1),strlen(s2));//długość
+printf("Prówanie s1 i s2: %d\n",strcmp(s1,s2));//porównywanie
+printf("Połączenie s1 i s2: %s\n",strcat(s1,s2));//łączenie
+printf("s1: %s\n",s1);
+printf("s2: %s\n",s2);
+printf("Podciąg s2 w s1: %s\n",strstr(s1,s2));//szukanie wzorca
+printf("s1: %s\n",s1);
+printf("s2: %s\n",s2);
+printf("Kopiowanie s2 do s1: %s\n",strcpy(s1,s2));//kopiowanie
+printf("s1: %s\n",s1);
+printf("s2: %s\n",s2);
