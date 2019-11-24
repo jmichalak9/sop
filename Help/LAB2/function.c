@@ -56,7 +56,7 @@ void parent_work()
 {
 	/*sethandler(alarm_handler,SIGALRM);
 	alarm(l*10);
-	while(last_signal!=SIGALRM) 
+	while(alarm_signal!=SIGALRM) 
     {
 
 	}*/
@@ -126,7 +126,7 @@ ssize_t bulk_write(int filedesc, char *buf, size_t count)
     int b;//ilosc przepisywanych bloków romiazru size
     char *name;//nazwa tworzonego pliku
     int in,out;
-	ssize_t count;
+	ssize_t count = size;
 	char *buf=malloc(size);
 	if(!buf) ERR("malloc");
 	if((out=TEMP_FAILURE_RETRY(open(name,O_WRONLY|O_CREAT|O_TRUNC|O_APPEND,0777)))<0)ERR("open");
