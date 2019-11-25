@@ -2,13 +2,13 @@
 void create_children(int n) 
 {
 	pid_t s;
-    for(int i=0;i<n;i++)
+    for(int i = 0;i<n;i++)
     {
-        switch ((s=fork())) 
+        switch ((s = fork())) 
         {
 			case 0: 
             {
-                //sethandler(sig_handler,SIGUSR1);
+				//sethandler(sig_handler,SIGUSR1);
 				//sethandler(sig_handler,SIGUSR2);
 				//child_work();
 				exit(EXIT_SUCCESS);
@@ -16,7 +16,7 @@ void create_children(int n)
 			case -1:
             {
                 ERR("Fork");
-            } break;
+			} break;
 		}
         printf("[%d]\n",s);
     }
@@ -26,7 +26,7 @@ void create_children(int n)
 void child_work() 
 {
 	//srand(time(NULL)*getpid());	
-	//int t=5+rand()%(10-5+1);
+	//int t = 5+rand()%(10-5+1);
 	//struct timespec time = {0, t*10000};
     //nanosleep(&time,NULL);
 }
@@ -36,15 +36,15 @@ void child_killer(int sig) //sigchld_handler
 	pid_t pid;
     int stat_loc;
 	for(;;){
-		pid=waitpid(0, &stat_loc, WNOHANG);
+		pid = waitpid(0, &stat_loc, WNOHANG);
         if(pid>0)
         {
             //if ( WIFEXITED(stat_loc) ) exit_status = WEXITSTATUS(stat_loc); //value returned by child                
         }
-		if(pid==0) return; //
-		if(pid<=0) //BŁĄD
+		if(pid == 0) return; //
+		if(pid <= 0) //BŁĄD
         {
-			if(errno==ECHILD) return;
+			if(errno == ECHILD) return;
 			ERR("waitpid");
 		}
 	}
@@ -56,7 +56,7 @@ void parent_work()
 {
 	/*sethandler(alarm_handler,SIGALRM);
 	alarm(l*10);
-	while(alarm_signal!=SIGALRM) 
+	while(alarm_signal != SIGALRM) 
     {
 
 	}*/
@@ -64,18 +64,18 @@ void parent_work()
 }
 //MĄDRE SPANIE
 struct timespec time = {0, 0};
-while(-1==nanosleep(&time,&time)) 
+while(-1 == nanosleep(&time,&time)) 
 {
     //printf("Remaining time: %ld sec and %ld nanosec\n",time.tv_sec,time.tv_nsec);
 }
 //MĄDRE CZEKANIE NA SYGNAŁ OD DZIECI
 void parent_work(sigset_t oldmask) 
 {
-	int count=0;
+	int count = 0;
 	while(1)
     {
-		last_signal=0;
-		while(last_signal!=SIGUSR2)
+		last_signal = 0;
+		while(last_signal != SIGUSR2)
 			sigsuspend(&oldmask);
 		count++;
 		//printf("[PARENT] received %d SIGUSR2\n", count);
@@ -95,29 +95,29 @@ void parent_work(sigset_t oldmask)
 ssize_t bulk_read(int filedesc, char *buf, size_t count)
 {
 	ssize_t c;
-	ssize_t len=0;
+	ssize_t len = 0;
 	do{
-		c=TEMP_FAILURE_RETRY(read(filedesc,buf,count));
+		c = TEMP_FAILURE_RETRY(read(filedesc,buf,count));
 		if(c<0) return c;
-		if(c==0) return len; //EOF
-		buf+=c;
-		len+=c;
-		count-=c;
-	}while(count>0);
+		if(c == 0) return len; //EOF
+		buf+= c;
+		len += c;
+		count -= c;
+	}while(count > 0);
 	return len ;
 }
 //MADRE PISANIE DO PLIKU
 ssize_t bulk_write(int filedesc, char *buf, size_t count)
 {
 	ssize_t c;
-	ssize_t len=0;
+	ssize_t len = 0;
 	do{
-		c=TEMP_FAILURE_RETRY(write(filedesc,buf,count));
+		c = TEMP_FAILURE_RETRY(write(filedesc,buf,count));
 		if(c<0) return c;
-		buf+=c;
-		len+=c;
-		count-=c;
-	}while(count>0);
+		buf += c;
+		len += c;
+		count -= c;
+	}while(count > 0);
 	return len ;
 }
 // PRZEPISYWANIE Z JEDNEGO DO DRUGIEGO
@@ -127,13 +127,13 @@ ssize_t bulk_write(int filedesc, char *buf, size_t count)
     char *name;//nazwa tworzonego pliku
     int in,out;
 	ssize_t count = size;
-	char *buf=malloc(size);
+	char *buf = malloc(size);
 	if(!buf) ERR("malloc");
-	if((out=TEMP_FAILURE_RETRY(open(name,O_WRONLY|O_CREAT|O_TRUNC|O_APPEND,0777)))<0)ERR("open");
-	if((in=TEMP_FAILURE_RETRY(open("/dev/urandom",O_RDONLY)))<0)ERR("open");
-	for(int i=0; i<b;i++){
-		if((count=bulk_read(in,buf,size))<0) ERR("read");
-		if((count=bulk_write(out,buf,count))<0) ERR("read");
+	if((out = TEMP_FAILURE_RETRY(open(name,O_WRONLY|O_CREAT|O_TRUNC|O_APPEND,0777)))<0)ERR("open");
+	if((in = TEMP_FAILURE_RETRY(open("/dev/urandom",O_RDONLY)))<0)ERR("open");
+	for(int i = 0; i<b;i++){
+		if((count = bulk_read(in,buf,size))<0) ERR("read");
+		if((count = bulk_write(out,buf,count))<0) ERR("read");
 		if(TEMP_FAILURE_RETRY(fprintf(stderr,"Block of %ld bytes transfered. Signals RX:%d\n",count,sig_count))<0)ERR("fprintf");;
 	}
 	if(TEMP_FAILURE_RETRY(close(in)))ERR("close");
@@ -141,7 +141,7 @@ ssize_t bulk_write(int filedesc, char *buf, size_t count)
 	free(buf);
 }
 //PRZYDATNE OPERACJE
-int* tab = mallock(sizeof(int) * rozmiar);
+int* tab = malloc(sizeof(int) * rozmiar);
 free(tab);
 char s1[25] = "Ala ma kota";
 char s2[25] = "Ala ma psa";
