@@ -52,6 +52,42 @@ Polecam [gdbgui](https://www.gdbgui.com/).
 ### strace
 Pozwala śledzić wywołania funkcji systemowych i sygnały. Więcej w `man strace`.
 
+## pipe/FIFO
+- odczyt i zapis na zasadzie first-in-first-out
+- łącze jest jednokierunkowe
+- FIFO jest widoczne w systemie plików, a pipe nie
+- `PIPE_BUF` oznacza maksymalną wielkość bufora łącza
+- `fork` oczywiście przekazuje do dziecka łącze utworzone przez rodzica
+
+## pipe
+`#include <unistd.h>`
+### `int pipe(int fildes[2])`
+- tworzy jednokierunkowe nienazwane łącze
+- czytamy z `fildes[0]` zwykle funkcją `read`
+- piszemy do `fildes[1]` zwykle funkcją `write`
+- zwraca `0`, jeśli się powiedzie
+- zwraca `-1` i ustawia `errno` w przeciwnym wypadku
+
+### `int close(int fildes)`
+- zamyka łącze
+
+## FIFO
+`#include <sys/stat.h>`
+### `int mkfifo(const char *path, mode_t mode)`
+- tworzy FIFO w systemie plików
+- `const char *path` to ścieżka
+- `mode_t` to prawa dostępu
+- zwraca `0`, jeśli się powiedzie
+- zwraca `-1` i ustawia `errno` w przeciwnym wypadku
+
+### `int open(const char *path, int oflag, ...)`
+- otwiera kolejkę `path` p w trybie `oflag`
+- domyślnie operacje otwarcia są **blokujące**
+- wywołanie z flagą `O_NONBLOCK` jest nieblokujące
+
+### `int unlink(const char *path)`
+- usuwa FIFO z systemu
+
 ## Inne źródła
 - [glibc](https://www.gnu.org/software/libc/manual/)
 - [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/)
