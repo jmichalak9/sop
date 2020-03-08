@@ -1,6 +1,5 @@
 # sop
 W tym repozytorium znajdują się m.in. porady na laby z sopów.
-W plikach zad\*.c są rozwiązania do przykładowych zadań na końcu tutoriala.
 To repo nie zastępuje tutoriala, materiałów z dysku i dokumentacji.
 Zachęcam do tworzenia issues i pull requestów.
 
@@ -37,9 +36,6 @@ if (closedir(dir))
 ### vim
 ale + coc + ccls
 
-### bash/terminal
-TODO: c-z, c-d itp.
-
 ### manpage
 - `d` i `u` szybkie poruszanie w dół i w górę
 - `/str` wyszukiwanie wzorca `str` w tekście
@@ -55,16 +51,6 @@ Polecam [gdbgui](https://www.gdbgui.com/).
 
 ### strace
 Pozwala śledzić wywołania funkcji systemowych i sygnały. Więcej w `man strace`.
-
-### wgrywanie rozwiązań
-
-## Strumienie I/O
-
-## Katalogi
-
-## Zmienne środowiskowe
-
-## Parametry wywołania programu
 
 ## Inne źródła
 - [glibc](https://www.gnu.org/software/libc/manual/)
