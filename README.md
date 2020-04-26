@@ -1,6 +1,5 @@
 # sop
 W tym repozytorium znajdują się m.in. porady na laby z sopów.
-W plikach zad\*.c są rozwiązania do przykładowych zadań na końcu tutoriala.
 To repo nie zastępuje tutoriala, materiałów z dysku i dokumentacji.
 Zachęcam do tworzenia issues i pull requestów.
 
@@ -37,9 +36,6 @@ if (closedir(dir))
 ### vim
 ale + coc + ccls
 
-### bash/terminal
-TODO: c-z, c-d itp.
-
 ### manpage
 - `d` i `u` szybkie poruszanie w dół i w górę
 - `/str` wyszukiwanie wzorca `str` w tekście
@@ -56,17 +52,43 @@ Polecam [gdbgui](https://www.gdbgui.com/).
 ### strace
 Pozwala śledzić wywołania funkcji systemowych i sygnały. Więcej w `man strace`.
 
-### wgrywanie rozwiązań
+## pipe/FIFO
+- odczyt i zapis na zasadzie first-in-first-out
+- łącze jest jednokierunkowe
+- FIFO jest widoczne w systemie plików, a pipe nie
+- `PIPE_BUF` oznacza maksymalną wielkość bufora łącza
+- `fork` oczywiście przekazuje do dziecka łącze utworzone przez rodzica
 
-## Strumienie I/O
+## pipe
+`#include <unistd.h>`
+### `int pipe(int fildes[2])`
+- tworzy jednokierunkowe nienazwane łącze
+- czytamy z `fildes[0]` zwykle funkcją `read`
+- piszemy do `fildes[1]` zwykle funkcją `write`
+- zwraca `0`, jeśli się powiedzie
+- zwraca `-1` i ustawia `errno` w przeciwnym wypadku
 
-## Katalogi
+### `int close(int fildes)`
+- zamyka łącze
 
-## Zmienne środowiskowe
+## FIFO
+`#include <sys/stat.h>`
+### `int mkfifo(const char *path, mode_t mode)`
+- tworzy FIFO w systemie plików
+- `const char *path` to ścieżka
+- `mode_t` to prawa dostępu
+- zwraca `0`, jeśli się powiedzie
+- zwraca `-1` i ustawia `errno` w przeciwnym wypadku
 
-## Parametry wywołania programu
+### `int open(const char *path, int oflag, ...)`
+- otwiera kolejkę `path` p w trybie `oflag`
+- domyślnie operacje otwarcia są **blokujące**
+- wywołanie z flagą `O_NONBLOCK` jest nieblokujące
+
+### `int unlink(const char *path)`
+- usuwa FIFO z systemu
 
 ## Inne źródła
 - [glibc](https://www.gnu.org/software/libc/manual/)
 - [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/)
-- Michael Kerrisk - "Linux Programming Interface" łatwo dostępna książka, w której wszystko jest szczegółowo opisane, są tam przykładowe programy i ich uruchomienia
+- Michael Kerrisk - "Linux Programming Interface" łatwo dostępna książka, w której wszystko jest szczegółowo opisane, są tam przykładowe [programy, helpery itp.](http://man7.org/tlpi/code/online/index.html)
